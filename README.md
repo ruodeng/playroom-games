@@ -25,7 +25,7 @@ npm run preview  # 预览 dist/ 中的构建结果
 
 正式域名为 `https://games.uutom.com`。`/` 是游戏大厅，`/games/:id` 是游戏，`/records` 和 `/records/:id` 是榜单。旧的 `#/…` 游戏书签仍可打开。`/robots.txt` 声明站点地图地址。`/sitemap.xml`、标题、页面描述和 canonical 由同一路由目录生成。
 
-线上入口为 Cloudflare Worker `playroom-games`，账号和成绩由 SQLite Durable Object `GameRecords` 持久保存。Cloudflare 依据 `wrangler.json` 绑定自定义域名。`npm run build` 生成浏览器资源、许可证和本地预览模板。部署时仅上传静态资源清单内的文件；模板由 Worker 用于服务端渲染。
+线上入口为 Cloudflare Worker `playroom-games`，账号和成绩由 SQLite Durable Object `GameRecords` 持久保存。Cloudflare 依据 `wrangler.json` 绑定自定义域名。`npm run build` 生成浏览器资源、许可证和内联首屏样式的模板，供 Worker 和本地预览使用。部署时仅上传静态资源清单内的文件。首屏样式如需引用图片等资源，请使用以 `/` 开头的同源路径，让深层页面也能正确加载。
 
 GA4 使用 `dengruo` 账号内的「片刻 Playroom」媒体资源，衡量 ID 为 `G-VPY9P2ZPV3`。只在正式域名发送页面浏览，站内导航和前进后退按规范 URL 统计。请保持此数据流的增强型衡量关闭，避免重复统计。Search Console 使用 `https://games.uutom.com/` 网址前缀资源。
 

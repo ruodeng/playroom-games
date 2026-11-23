@@ -1,7 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { handleAsNodeRequest } from 'cloudflare:node';
 import { createServer } from 'node:http';
-import template from '../index.html';
+import template from '../dist/index.html';
 import { SITE_ORIGIN } from '../src/site-pages.js';
 import { isPublicAsset } from '../scripts/public-assets.mjs';
 import { createRecordsApi } from '../scripts/records-api.mjs';

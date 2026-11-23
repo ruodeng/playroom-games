@@ -1,9 +1,9 @@
 import { lstatSync } from 'node:fs';
-import { copyFile, mkdir, readdir, realpath, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { build } from 'esbuild';
+import { build, transform } from 'esbuild';
 import { fixedPublicAssets, isPublicAsset, publicModuleDirectories } from './public-assets.mjs';
 import { robotsTxt, sitemapXml } from './site-response.mjs';
 
@@ -40,18 +40,35 @@ const { metafile, outputFiles } = await build({
 });
 const bundles = new Map(outputFiles.map(file => [file.path, file.contents]));
 
+const template = await readFile(path.join(root, 'index.html'), 'utf8');
+const stylesheetLink = /<link\b[^>]*\srel\s*=\s*(['"])stylesheet\1[^>]*>/gi;
+const inlinedStyles = new Map(await Promise.all([...template.matchAll(stylesheetLink)].map(async ([tag]) => {
+  const href = tag.match(/\shref\s*=\s*(['"])(.*?)\1/i)?.[2];
+  if (!href?.startsWith('/') || !href.endsWith('.css') || !isPublicAsset(href) || !publicFiles.has(href.slice(1))) {
+    throw new Error(`Invalid public stylesheet in index.html: ${tag}`);
+  }
+  const sourcefile = href.slice(1);
+  const stylesheet = await readFile(path.join(root, sourcefile), 'utf8');
+  const { code } = await transform(stylesheet, { loader: 'css', minify: true, sourcefile });
+  if (/<\/style/i.test(code)) throw new Error(`Unsafe inline style in ${sourcefile}`);
+  const media = tag.match(/\smedia\s*=\s*(?:"[^"]*"|'[^']*')/i)?.[0] ?? '';
+  return [tag, `<style${media}>${code.trimEnd()}</style>`];
+})));
+const productionTemplate = template.replace(stylesheetLink, tag => inlinedStyles.get(tag));
+
 const previous = lstatSync(dist, { throwIfNoEntry: false });
 if (previous) {
   if (!previous.isDirectory() || (await realpath(dist)) !== dist) throw new Error('dist must be a regular directory inside the workspace');
   await rm(dist, { recursive: true });
 }
-for (const file of ['index.html', ...publicFiles]) {
+for (const file of publicFiles) {
   const target = path.join(dist, file);
   await mkdir(path.dirname(target), { recursive: true });
   const bundle = bundles.get(target);
   if (bundle) await writeFile(target, bundle);
   else await copyFile(path.join(root, file), target);
 }
+await writeFile(path.join(dist, 'index.html'), productionTemplate);
 await writeFile(path.join(dist, 'sitemap.xml'), sitemapXml());
 await writeFile(path.join(dist, 'robots.txt'), robotsTxt());
 
