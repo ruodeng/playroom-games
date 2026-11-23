@@ -1,0 +1,121 @@
+.sports-game {
+  display: grid;
+  margin-inline: auto;
+  width: min(100%, 460px);
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sports-game .sports-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #cbd8bd;
+  border-radius: 12px;
+  background: #edf3e5;
+  touch-action: none;
+  user-select: none;
+}
+
+.sports-game .sports-board[data-pointer] {
+  cursor: crosshair;
+}
+
+.sports-game .sports-stats {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+}
+
+.sports-game .sports-stats > div {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 7px 8px;
+  border: 1px solid #dbe4d2;
+  border-radius: 8px;
+  background: #f5f8ed;
+}
+
+.sports-game .sports-stats dt {
+  color: #506247;
+  font-size: .75rem;
+}
+
+.sports-game .sports-stats dd {
+  margin: 2px 0 0;
+  color: #35472c;
+  font-size: clamp(.8rem, 3.4vw, 1rem);
+  font-weight: 700;
+}
+
+.sports-game .sports-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sports-game .sports-controls button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 7px 12px;
+  touch-action: manipulation;
+}
+
+.sports-game .sports-controls button.sports-primary,
+.sports-game .sports-controls button[aria-pressed="true"] {
+  background: var(--accent, #c4f169);
+  color: #35472c;
+  font-weight: 700;
+}
+
+.sports-game .sports-controls button[data-hold] {
+  touch-action: none;
+  user-select: none;
+}
+
+.sports-game .sports-slider {
+  display: grid;
+  grid-template-columns: minmax(4em, max-content) minmax(0, 1fr);
+  align-items: center;
+  width: min(100%, 330px);
+  min-height: 44px;
+  gap: 10px;
+  font-size: .84rem;
+}
+
+.sports-game .sports-slider input {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  margin: 0;
+  accent-color: #577448;
+}
+
+.sports-game .sports-meter {
+  position: relative;
+  box-sizing: border-box;
+  height: 14px;
+  border: 1px solid #b9c8ae;
+  border-radius: 8px;
+  background: #e9eee1;
+}
+
+.sports-game .sports-meter-fill,
+.sports-game .sports-meter-range {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: #a4c184;
+}
+
+.sports-game .sports-meter-marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: #36532c;
+}

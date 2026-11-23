@@ -1,0 +1,24 @@
+{
+  "name": "playroom-games",
+  "main": "cloudflare/worker.mjs",
+  "account_id": "47e3a55af455d5865728d7d5a3755f7c",
+  "compatibility_date": "2026-11-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none"
+  },
+  "routes": [
+    { "pattern": "games.uutom.com", "custom_domain": true, "zone_name": "uutom.com" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "RECORDS", "class_name": "GameRecords" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GameRecords"] }],
+  "rules": [{ "type": "Text", "globs": ["**/*.html"], "fallthrough": true }],
+  "vars": { "GA_MEASUREMENT_ID": "G-VPY9P2ZPV3" }
+}

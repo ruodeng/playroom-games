@@ -1,0 +1,54 @@
+/* Puzzle pack: cream surfaces, sage outlines, readable symbols and labels. */
+.puzzle-linkup-grid, .puzzle-match-grid, .puzzle-sliding-grid, .puzzle-sokoban-cells { display: grid; gap: 6px; padding: 9px; border-radius: 10px; background: #d5dec8; }
+.puzzle-linkup-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.puzzle-match-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.puzzle-linkup-grid button, .puzzle-match-grid button, .puzzle-sliding-grid button, .puzzle-sokoban-cells button { aspect-ratio: 1; min-width: 0; padding: 0; border: 1px solid #bac9a9; border-radius: 5px; color: #425a35; background: #f7f6e9; font: 600 clamp(17px, 2.5vw, 26px)/1 "Segoe UI", "Microsoft YaHei", sans-serif; touch-action: manipulation; }
+.puzzle-linkup-grid button { font-size: clamp(13px, 2vw, 20px); }
+.puzzle-match-grid button { font-size: clamp(20px, 2.7vw, 31px); }
+.puzzle-color-1 { --puzzle-fill: #d3e4ca; --puzzle-ink: #3f6247; }
+.puzzle-color-2 { --puzzle-fill: #f0d8d3; --puzzle-ink: #975349; }
+.puzzle-color-3 { --puzzle-fill: #efdfae; --puzzle-ink: #7a6025; }
+.puzzle-color-4 { --puzzle-fill: #e0d8e9; --puzzle-ink: #735785; }
+.puzzle-color-5 { --puzzle-fill: #d1e2e5; --puzzle-ink: #356670; }
+.puzzle-color-6 { --puzzle-fill: #f0d1b5; --puzzle-ink: #94572e; }
+.puzzle-color-7 { --puzzle-fill: #e4e9be; --puzzle-ink: #626b31; }
+.puzzle-color-8 { --puzzle-fill: #e4d6c7; --puzzle-ink: #75563e; }
+.puzzle-linkup-grid button, .puzzle-match-grid button { color: var(--puzzle-ink); background: var(--puzzle-fill); }
+.puzzle-linkup-grid .puzzle-empty, .puzzle-sliding-grid .puzzle-empty { background: #c8d2bb; border-color: transparent; box-shadow: none; }
+.puzzle-linkup-grid .puzzle-selected, .puzzle-match-grid .puzzle-selected { box-shadow: inset 0 0 0 3px #506d37; }
+.puzzle-linkup-grid .puzzle-hint, .puzzle-match-grid .puzzle-hint { outline: 2px dashed #845c37; outline-offset: -4px; }
+.puzzle-sliding-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; padding: 11px; }
+.puzzle-sliding-grid button { font: 600 clamp(27px, 4vw, 42px)/1 Georgia, serif; background: #f5f2e5; border-color: #d5ceba; }
+.puzzle-sliding-grid .puzzle-in-place { background: #e0edca; color: #527234; }
+.puzzle-sliding-grid .puzzle-movable { border-color: #8fa574; box-shadow: inset 0 -3px 0 #c6d5ae; }
+.puzzle-direction { width: 44px; padding-inline: 4px; font-size: 19px; }
+.puzzle-sokoban-cells { gap: 3px; padding: 7px; background: #ccd5bf; }
+.puzzle-sokoban-cells button { font-size: clamp(13px, 2vw, 19px); border: 0; background: #f3efdf; border-radius: 3px; position: relative; }
+.puzzle-sokoban-cells .puzzle-wall { background: #99ab85; box-shadow: inset 0 -4px 0 #7b936b55; }
+.puzzle-sokoban-cells .puzzle-goal { color: #7b9c52; background: #e6edcf; font-size: 34px; }
+.puzzle-sokoban-cells .puzzle-box { background: #cfaa7c; box-shadow: inset 0 0 0 4px #b68f63; color: #584529; font-size: clamp(13px, 2vw, 19px); }
+.puzzle-sokoban-cells .puzzle-box.puzzle-goal { background: #bdd68c; box-shadow: inset 0 0 0 4px #8faa62; color: #456131; }
+.puzzle-sokoban-cells .puzzle-player { background: #e1eccf; color: #3d632c; font-size: clamp(13px, 2vw, 19px); box-shadow: inset 0 0 0 3px #839f68; border-radius: 50%; }
+.puzzle-water-bottles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 19px 13px; padding: 12px 8px; }
+.puzzle-bottle { min-width: 0; padding: 6px; border: 2px solid transparent; border-radius: 10px; background: transparent; touch-action: manipulation; }
+.puzzle-bottle-number { display: block; font: 500 13px/1.5 Georgia, serif; color: #738260; margin-bottom: 5px; }
+.puzzle-water-glass { display: flex; flex-direction: column; padding: 5px 3px 3px; border: 2px solid #a7b796; border-top: 0; border-radius: 0 0 15px 15px; background: #f7f7ee; overflow: hidden; }
+.puzzle-water-layer { display: grid; place-items: center; width: 100%; height: 31px; font-size: 12px; font-weight: 600; color: var(--puzzle-ink, transparent); background: var(--puzzle-fill, transparent); }
+.puzzle-bottle.puzzle-selected { border-color: #79954e; background: #eaf1db; }
+.puzzle-sorted .puzzle-water-glass { border-color: #719445; box-shadow: 0 3px 0 #b8d48a; }
+.puzzle-art { display: grid; grid-template-columns: repeat(3, 48px); gap: 8px; padding: 12px; border-radius: 9px; background: #cbd7ba; box-shadow: 7px 9px 0 var(--art-shadow); transform: rotate(-7deg); }
+.puzzle-art b { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 5px; background: #f7f3e7; color: #66844f; font: 500 25px Georgia, "Microsoft YaHei", serif; }
+.puzzle-art-linkup b:nth-child(3n) { color: #a67772; background: #f0ddd7; }
+.puzzle-art-match b:nth-child(2n) { color: #976c58; background: #eed3b9; }
+.puzzle-art-sokoban b:nth-child(2n) { background: #d2b185; color: #785b3c; }.puzzle-art-sokoban b:nth-child(5) { border-radius: 50%; background: #b2c98e; }
+.puzzle-art-sliding b:last-child { background: #a6b790; }.puzzle-art-sliding b { font-weight: 600; }
+.puzzle-art-water { display: flex; gap: 13px; align-items: end; transform: rotate(-7deg); }
+.puzzle-art-water b { display: flex; flex-direction: column-reverse; justify-content: start; width: 45px; height: 135px; border: 3px solid #91aa7c; border-top: 0; border-radius: 0 0 13px 13px; padding: 3px; background: #eff3e5; overflow: hidden; box-shadow: 4px 5px 0 var(--art-shadow); }
+.puzzle-art-water i { display: grid; place-items: center; height: 35px; background: #a7c0a4; color: #4a6b46; font-size: 13px; font-style: normal; }.puzzle-art-water i:nth-child(2n) { background: #e7c2b5; color: #945f50; }.puzzle-art-water b:nth-child(2) i { background: #e7c2b5; color: #945f50; }.puzzle-art-water b:nth-child(2) i:nth-child(2n) { background: #a7c0a4; color: #4a6b46; }
+@media (max-width: 480px) {
+  .puzzle-linkup-grid, .puzzle-match-grid { padding: 5px; gap: 3px; }
+  .puzzle-linkup-grid button { font-size: 13px; border-radius: 3px; }.puzzle-match-grid button { font-size: 21px; border-radius: 4px; }
+  .puzzle-sliding-grid { padding: 7px; gap: 6px; }.puzzle-sliding-grid button { font-size: 28px; }
+  .puzzle-sokoban-cells { padding: 4px; gap: 2px; }.puzzle-sokoban-cells .puzzle-box { box-shadow: inset 0 0 0 3px #b68f63; }.puzzle-sokoban-cells .puzzle-box.puzzle-goal { box-shadow: inset 0 0 0 3px #8faa62; }
+  .puzzle-water-bottles { padding: 4px 0; gap: 12px 5px; }.puzzle-bottle { padding: 3px; }.puzzle-water-layer { height: 26px; font-size: 11px; }.puzzle-water-glass { padding-inline: 2px; }
+}

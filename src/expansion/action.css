@@ -1,0 +1,41 @@
+.exp-action {
+  width: min(100%, 36rem);
+  margin-inline: auto;
+  display: grid;
+  gap: .625rem;
+}
+
+.exp-action canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: .75rem;
+  background: #171c20;
+}
+
+.exp-action .exp-action-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .375rem;
+}
+
+.exp-action-controls button {
+  min-height: 44px;
+  min-width: 44px;
+  padding-inline: .75rem;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.exp-action-controls button[aria-pressed='true'] {
+  background: #d8ecb1;
+  color: #27371f;
+  box-shadow: inset 0 0 0 2px #788f58;
+}
+
+.exp-action-controls button:focus-visible {
+  outline: 2px solid #547433;
+  outline-offset: 2px;
+}

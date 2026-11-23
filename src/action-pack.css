@@ -1,0 +1,46 @@
+/* Five compact arcade fields extend the paper, sage, and lime Playroom palette. */
+.action-game .arcade-surface { max-width: var(--action-width, 360px); }
+.action-game .action-canvas { width: 100%; height: auto; display: block; border: 1px solid #d7e0c8; border-radius: 8px; background: #f0f4e7; touch-action: none; user-select: none; }
+.action-game .arcade-controls { gap: 8px; }
+.action-game .arcade-controls .button { flex: 0 1 auto; min-width: 44px; min-height: 44px; touch-action: none; user-select: none; }
+.action-game .arcade-controls .action-primary { background: var(--accent); color: #354b26; font-weight: 650; }
+.action-game .arcade-controls .action-primary:hover:not(:disabled) { background: #b5e755; }
+.action-game .arcade-controls .action-direction { width: 48px; padding-inline: 0; font-size: 22px; }
+.action-game .arcade-controls .action-flap { width: 100%; max-width: 360px; }
+.action-game .arcade-stats strong { font-variant-numeric: tabular-nums; }
+.action-game .arcade-status { min-height: 2.8em; display: flex; align-items: center; }
+.action-game .board-hint { flex-wrap: wrap; }
+.action-art { position: relative; width: 188px; height: 174px; color: #49623b; }
+.art-bubbles-back { background: #e4e9d4; --art-shadow: #bfcca7; }
+.art-flappy-back { background: #e4ecd6; --art-shadow: #c0cfae; }
+.art-pong-back { background: #e7e4d8; --art-shadow: #c9c5b3; }
+.art-invaders-back { background: #dfe7db; --art-shadow: #b8c7ae; }
+.art-maze-back { background: #e5e9d0; --art-shadow: #c2cca4; }
+.action-art-bubbles { display: grid; grid-template-columns: repeat(3, 42px); grid-auto-rows: 38px; justify-content: center; padding-top: 12px; }
+.action-art-bubbles > span, .action-art-bubbles > b { border-radius: 50%; border: 1px solid #879d6c; width: 42px; height: 42px; display: grid; place-items: center; font-size: 25px; background: #b2c98e; }
+.action-art-bubbles > span:nth-child(2) { background: #d6bd8e; }.action-art-bubbles > span:nth-child(3) { background: #c99a84; }.action-art-bubbles > span:nth-child(6) { background: #99b8b0; }
+.action-art-bubbles > span:nth-child(n+4) { transform: translateX(20px); }.action-art-bubbles > b { position: absolute; bottom: 0; left: 73px; background: #bad982; }
+.action-art-bubbles > i { position: absolute; left: 92px; top: 99px; height: 27px; border-left: 2px dashed #80985e; }
+.action-art-flappy > i { position: absolute; left: 132px; width: 45px; height: 62px; top: -4px; background: #a6bf86; border: 2px solid #8ea96e; border-radius: 5px; box-shadow: 5px 5px 0 #bfcfa9; }
+.action-art-flappy > i:nth-of-type(2) { top: auto; bottom: -4px; height: 56px; }.action-art-flappy > i::after { content: ''; position: absolute; inset: auto -5px -2px; height: 12px; background: #7f9c60; border-radius: 3px; }.action-art-flappy > i:nth-of-type(2)::after { inset: -2px -5px auto; }
+.action-art-flappy > b { position: absolute; top: 70px; left: 28px; width: 52px; height: 39px; border-radius: 50%; background: #bbd77a; border: 2px solid #738c48; transform: rotate(-10deg); }
+.action-art-flappy > b::before { content: ''; position: absolute; left: 5px; bottom: 3px; width: 23px; height: 17px; border-radius: 50%; background: #91ac5e; }.action-art-flappy > b::after { content: ''; position: absolute; right: -15px; top: 16px; border-block: 6px solid transparent; border-left: 16px solid #c6a274; }
+.action-art-flappy > b > span { position: absolute; width: 10px; height: 10px; border: 3px solid #fffefa; border-radius: 50%; right: 6px; top: 6px; background: #35472c; }.action-art-flappy > em { position: absolute; left: 5px; top: 105px; font: 29px Georgia, serif; color: #a9bc8b; }
+.action-art-pong { width: 202px; height: 154px; border: 2px solid #b4c69c; border-radius: 8px; background: #edf2e3; box-shadow: 7px 9px 0 var(--art-shadow); }
+.action-art-pong::after { content: ''; position: absolute; inset: 10px 50%; border-left: 2px dashed #cedabc; }.action-art-pong > i { position: absolute; left: 13px; top: 61px; width: 9px; height: 49px; border-radius: 5px; background: #6d8b50; }.action-art-pong > i:last-child { left: auto; right: 13px; top: 27px; background: #b39c73; }.action-art-pong > b { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: #4e633a; left: 115px; top: 57px; }.action-art-pong > span { position: absolute; width: 35px; border-top: 2px dashed #aec28e; left: 79px; top: 73px; transform: rotate(-28deg); }
+.action-art-invaders { padding: 14px 18px; border-radius: 9px; background: #f0f4e7; box-shadow: 7px 9px 0 var(--art-shadow); }.action-art-invaders > div { display: grid; grid-template-columns: repeat(3, 32px); gap: 18px 19px; }.action-art-invaders i { height: 21px; background: #8ca36e; border-radius: 7px 7px 2px 2px; position: relative; }.action-art-invaders i::before, .action-art-invaders i::after { content: ''; position: absolute; width: 5px; height: 5px; top: 8px; background: #edf4dd; left: 6px; }.action-art-invaders i::after { left: auto; right: 6px; }.action-art-invaders > b { position: absolute; left: 79px; bottom: 13px; border-inline: 15px solid transparent; border-bottom: 28px solid #4e673c; }.action-art-invaders > span { position: absolute; width: 3px; height: 16px; background: #91ac64; left: 92px; bottom: 51px; box-shadow: 0 -25px 0 #b3c892; }
+.action-art-maze { border: 5px solid #9fb780; border-radius: 10px; background: #f1f3df; box-shadow: 7px 9px 0 var(--art-shadow); }.action-art-maze > i { position: absolute; top: 20px; left: 20px; width: 44px; height: 35px; border: 8px solid #afc48e; border-radius: 4px; }.action-art-maze > i:nth-child(2) { left: auto; right: 20px; }.action-art-maze > i:nth-child(3) { top: auto; bottom: 18px; width: 110px; height: 27px; border-width: 7px; }.action-art-maze > b { position: absolute; left: 20px; top: 76px; width: 27px; height: 27px; border-radius: 50%; background: #a9c85e; clip-path: polygon(100% 0,100% 27%,53% 50%,100% 73%,100% 100%,0 100%,0 0); }.action-art-maze > span { position: absolute; left: 58px; top: 65px; font: 30px Georgia,serif; color: #879b66; }.action-art-maze > em { position: absolute; left: 133px; top: 76px; width: 23px; height: 27px; background: #bd9680; border-radius: 11px 11px 2px 2px; }.action-art-maze > em::after { content: '··'; position: absolute; top: -13px; left: 4px; color: #fffefa; font: bold 25px Georgia,serif; }
+@media (min-width: 761px) and (max-height: 900px) {
+  .action-game .arcade-surface { max-width: min(var(--action-width), max(220px, calc((100dvh - 430px) * var(--action-ratio)))); }
+  .action-game .arcade-stage { padding-block: 14px; }
+  .action-game .arcade-overlay { inset-block: 14px; }
+}
+@media (max-width: 480px) {
+  .action-game .arcade-controls { padding-inline: 12px; gap: 6px; }
+  .action-game .arcade-controls .button { padding-inline: 10px; }
+  .action-game .arcade-status { font-size: 11px; }
+}
+@media (max-width: 360px) {
+  .action-game .arcade-controls .button { padding-inline: 8px; font-size: 10px; }
+  .action-game .arcade-controls .action-direction { font-size: 22px; }
+}

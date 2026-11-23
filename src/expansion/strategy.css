@@ -1,0 +1,261 @@
+.strategy-game {
+  --strategy-player: #cef097;
+  --strategy-goal: #f5e6a9;
+  --strategy-sky: #ddedf0;
+  --strategy-sea: #c1e0e5;
+  --strategy-group: #f0f2e9;
+  --strategy-path: #e9dfc8;
+  --strategy-ash: #d8d9cf;
+  --strategy-danger: #f3c1ad;
+  display: grid;
+  gap: .8rem;
+  width: 100%;
+  min-width: 0;
+}
+.strategy-game .strategy-stats {
+  display: flex;
+  gap: .35rem .65rem;
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+}
+.strategy-stats span {
+  padding: .18rem .52rem;
+  border-radius: 1rem;
+  background: var(--strategy-group);
+  color: var(--ink);
+}
+.strategy-game .x-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .42rem;
+}
+.strategy-game .x-actions button {
+  min-height: 36px;
+}
+.strategy-game button[aria-pressed='true'] {
+  border-color: var(--accent-dark);
+  background: var(--strategy-player);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--accent-dark);
+}
+.strategy-board {
+  min-width: 0;
+  width: min(100%, 32rem);
+  margin-inline: auto;
+}
+.strategy-game .strategy-board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: clamp(2px, .65vw, 5px);
+}
+.strategy-game .strategy-cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(--strategy-group);
+  color: var(--ink);
+  font-size: clamp(.78rem, 2.1vw, 1.04rem);
+  font-weight: 650;
+  line-height: 1;
+  text-align: center;
+}
+.strategy-game .strategy-cell:disabled {
+  opacity: 1;
+}
+.strategy-game .strategy-cell:focus-visible {
+  z-index: 1;
+  outline-offset: 0;
+}
+.strategy-game .is-player { background: var(--strategy-player); }
+.strategy-game .is-target { background: var(--strategy-goal); }
+.strategy-game .is-danger { background: var(--strategy-danger); }
+.strategy-game .is-path { background: var(--strategy-path); }
+.strategy-game .is-clear { background: var(--strategy-group); }
+.strategy-game .is-blocked { background: var(--strategy-ash); }
+.strategy-game .is-water { background: var(--strategy-sky); }
+.strategy-game .is-scanned { background: var(--strategy-sea); }
+.strategy-game .is-grass { background: #e4efd8; }
+.strategy-game .is-brush { background: #d2e6bd; }
+.strategy-game .is-clearcut { background: #dbcfb3; }
+.strategy-game .strategy-cell[aria-pressed='true'] {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: -2px;
+}
+.strategy-game .strategy-cell[aria-pressed='true']:focus-visible {
+  outline-offset: 1px;
+}
+.strategy-game .x-note {
+  margin: 0;
+}
+.strategy-rail .strategy-board {
+  width: min(100%, 38rem);
+}
+.strategy-rail .strategy-cell {
+  aspect-ratio: 1.05;
+}
+.strategy-rail .strategy-cell.is-clear {
+  background: transparent;
+}
+.strategy-intersection {
+  display: grid;
+  width: min(100%, 33rem);
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-areas: '. north .' 'west crossing east' '. south .';
+  gap: 4px;
+  margin-inline: auto;
+}
+.strategy-lane, .strategy-junction {
+  min-height: 4.75rem;
+  padding: .3rem .22rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.strategy-lane {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  background: var(--strategy-group);
+  font-size: .84rem;
+}
+.strategy-lane-0 { grid-area: north; }
+.strategy-lane-1 { grid-area: east; }
+.strategy-lane-2 { grid-area: south; }
+.strategy-lane-3 { grid-area: west; }
+.strategy-junction {
+  display: grid;
+  place-items: center;
+  grid-area: crossing;
+  background: var(--strategy-path);
+  font-weight: 650;
+}
+.strategy-light {
+  padding: 0 .42rem;
+  border-radius: 2rem;
+  background: var(--strategy-danger);
+  font-size: .75rem;
+}
+.strategy-light.is-open { background: var(--strategy-player); }
+.strategy-forecast, .strategy-dispatch-list, .strategy-soundings, .strategy-program {
+  display: grid;
+  gap: .2rem;
+  margin: 0;
+  padding: .45rem .65rem;
+  border-radius: 8px;
+  background: var(--strategy-group);
+  font-size: .87rem;
+  list-style: none;
+}
+.strategy-forecast:empty, .strategy-soundings:empty {
+  display: none;
+}
+.strategy-dispatch-list .is-done {
+  color: var(--accent-dark);
+}
+.strategy-truck-surfaces {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(6rem, 1.45fr);
+  align-items: start;
+  gap: .7rem;
+}
+.strategy-truck .truck-left-edge {
+  border-inline-end: 2px dashed #a29476;
+}
+.strategy-piece {
+  padding: .42rem;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+}
+.strategy-piece strong {
+  display: block;
+  min-height: 2.8em;
+  margin-block-end: .25rem;
+  color: var(--ink);
+  font-size: .77rem;
+  line-height: 1.4;
+}
+.strategy-game .strategy-piece .strategy-cell {
+  font-size: .72rem;
+}
+.strategy-garage .garage-exit-lane {
+  border-inline-end: 2px solid var(--accent-dark);
+}
+.strategy-network {
+  position: relative;
+  width: min(100%, 42rem);
+  aspect-ratio: 2;
+  margin-inline: auto;
+  border-radius: 9px;
+  background: var(--strategy-group);
+}
+.strategy-tide .strategy-network { background: var(--strategy-sky); }
+.strategy-link {
+  position: absolute;
+  height: 0;
+  border-block-start: 2px solid #87917f;
+  transform-origin: 0 0;
+}
+.strategy-link.is-scheduled { border-block-start-style: dashed; }
+.strategy-link.is-available { border-color: var(--accent-dark); }
+.strategy-link-label, .strategy-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.strategy-link-label {
+  display: block;
+  padding: 0 .23rem;
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: clamp(.67rem, 2vw, .82rem);
+}
+.strategy-game .strategy-node {
+  min-width: 0;
+  min-height: 30px;
+  padding: .2rem .44rem;
+  border: 1px solid var(--accent-dark);
+  border-radius: 6px;
+  background: var(--paper);
+  font-size: clamp(.7rem, 2.2vw, .94rem);
+  font-weight: 650;
+}
+.strategy-game .strategy-node:disabled {
+  opacity: 1;
+  border-color: var(--line);
+  color: var(--muted);
+}
+.strategy-game .strategy-node.is-current {
+  border-color: var(--accent-dark);
+  background: var(--strategy-player);
+  color: var(--ink);
+}
+.strategy-program {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .32rem;
+}
+.strategy-program li {
+  padding: .16rem .35rem;
+  border-radius: 4px;
+  background: var(--paper);
+}
+.strategy-program .is-current {
+  background: var(--strategy-player);
+}
+.strategy-program .is-empty {
+  background: transparent;
+  color: var(--muted);
+}
+@media (max-width: 480px) {
+  .strategy-game { gap: .62rem; }
+  .strategy-game .x-actions button { min-height: 38px; }
+  .strategy-truck-surfaces { gap: .45rem; }
+  .strategy-intersection { gap: 3px; }
+}

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="片刻 Playroom，32 款免费在线小游戏。五子棋、大富翁、贪吃蛇、俄罗斯方块、连连看、纸牌接龙等，打开就能玩。">
+  <title>游戏大厅 · 片刻 Playroom</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/src/puzzle-pack.css">
+  <link rel="stylesheet" href="/src/action-pack.css">
+  <link rel="stylesheet" href="/src/board-pack.css">
+  <link rel="stylesheet" href="/src/classic-pack.css">
+  <link rel="stylesheet" href="/src/records.css">
+  <link rel="stylesheet" href="/src/expansion.css">
+  <!-- site-head -->
+  <script type="module" src="/src/app.js"></script>
+</head>
+<body>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="icon-stones" viewBox="0 0 24 24"><circle cx="9" cy="9" r="5.5"/><path d="M15 9.5a5.5 5.5 0 1 1-5.5 5.5"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="icon-undo" viewBox="0 0 24 24"><path d="m8 4-5 5 5 5M3 9h10a7 7 0 0 1 0 14" transform="translate(0 -2)"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4 2c-1 .6-1.5 1.1-1.5 2.5M12 17h.01"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-snake" viewBox="0 0 24 24"><path d="M5 19h10a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h8"/><path d="m14 1 4 2-4 2"/></symbol>
+    <symbol id="icon-tetris" viewBox="0 0 24 24"><path d="M8 3h8v6h6v8H2V9h6zM8 9h8M8 9v8m8-8v8"/></symbol>
+  </svg>
+
+  <aside class="sidebar" aria-label="主导航">
+    <a class="brand" href="/" aria-label="片刻，返回游戏大厅">
+      <img src="/favicon.svg" width="40" height="40" alt="">
+      <span><strong>片刻<span class="brand-period">.</span></strong><small>PLAYROOM</small></span>
+    </a>
+    <div class="sidebar-body">
+      <p class="nav-label">把快乐，留一点给自己</p>
+      <nav>
+        <a class="nav-link active" id="nav-library" href="/" aria-label="游戏大厅" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg><span>游戏大厅</span><span class="nav-count">32</span></a>
+        <a class="nav-link" id="nav-records" href="/records" title="片刻纪录榜" aria-label="片刻纪录榜"><span class="arcade-nav-icon" aria-hidden="true">♜</span><span>片刻纪录榜</span><span class="active-dot"></span></a>
+        <p class="nav-label game-label">开始一局</p>
+        <!-- game-navigation -->
+      </nav>
+      <div class="sidebar-note"><div class="note-orbit" aria-hidden="true"><i></i><i></i><i></i></div><p>不用赶时间。<br>下一步，慢慢想。</p><small>A LITTLE TIME TO PLAY.</small></div>
+    </div>
+    <div class="sidebar-footer"><span class="status-dot"></span>无需登录，即刻开玩<small>© 2026 片刻 Playroom</small></div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <div class="breadcrumb"><a href="/" aria-label="游戏大厅">小游戏，大快乐</a><span class="breadcrumb-separator">/</span><strong id="breadcrumb-page">游戏大厅</strong></div>
+      <span class="topbar-message"><span class="status-dot"></span>给自己一局的时间</span>
+    </header>
+
+    <!-- site-views -->
+    <template id="inactive-views">
+    <main id="game-view" class="main-content" hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">THE CLASSICS · 001</p><div class="title-row"><h1>五子棋</h1><span class="tag">经典棋类</span></div><p class="page-description">黑白之间，来一场思维的散步。</p></div>
+        <button class="button button-quiet rules-trigger"><svg class="icon"><use href="#icon-help"/></svg>玩法说明</button>
+      </div>
+
+      <div class="game-layout">
+        <section class="board-panel" aria-label="五子棋对局">
+          <div class="players-bar">
+            <div class="player active" id="black-player"><span class="player-avatar black-avatar"><i class="stone stone-black"></i></span><span class="player-info"><strong id="black-name">你</strong><small>黑棋 · 先手</small></span><span class="turn-label" id="black-turn">落子中</span></div>
+            <span class="versus">vs</span>
+            <div class="player" id="white-player"><span class="player-avatar white-avatar"><i class="stone stone-white"></i></span><span class="player-info"><strong id="white-name">片刻棋友</strong><small>白棋 · 后手</small></span><span class="turn-label" id="white-turn" hidden>思考中</span></div>
+          </div>
+          <div class="board-status" role="status" aria-live="polite" aria-atomic="true"><span class="status-dot" id="game-status-dot"></span><span id="game-status">轮到你了，落下第一颗黑棋</span><button id="retry-ai" class="text-button" hidden>重试</button></div>
+
+          <div class="board-frame">
+            <div class="board-coordinates top-coordinates" id="column-labels" aria-hidden="true"></div>
+            <div class="board-coordinates side-coordinates" id="row-labels" aria-hidden="true"></div>
+            <div class="board-surface">
+              <svg class="board-lines" id="board-lines" viewBox="0 0 600 600" aria-hidden="true"></svg>
+              <div id="board" class="board" role="grid" aria-label="五子棋棋盘，方向键移动，空格或回车落子" aria-rowcount="15" aria-colcount="15"></div>
+            </div>
+          </div>
+
+          <div class="board-toolbar"><span class="move-counter">第 <strong id="move-count">0</strong> 手<span class="toolbar-divider"></span><span id="last-move">等待第一手</span></span><div class="board-tools"><button id="undo-button" class="button button-quiet" disabled><svg class="icon"><use href="#icon-undo"/></svg>悔棋</button><button id="sound-button" class="icon-button" aria-label="开启落子音效" aria-pressed="false" title="开启落子音效"><svg class="icon"><use href="#icon-sound"/></svg><span class="sound-off-line"></span></button></div></div>
+          <div class="board-hint"><span>落子无悔？在这里，可以。</span><span id="save-status"><svg class="icon"><use href="#icon-check"/></svg>对局自动保存</span></div>
+        </section>
+
+        <aside class="game-aside" aria-label="对局设置和记录">
+          <section class="settings-panel">
+            <div class="section-heading"><h2>来，下一局</h2><span class="small-label">YOUR NEXT MOVE</span></div>
+            <form id="settings-form">
+              <fieldset id="difficulty-field"><legend>棋友难度</legend><div class="difficulty-options"><button type="button" data-difficulty="easy" aria-pressed="false">轻松</button><button type="button" data-difficulty="normal" aria-pressed="true" class="selected">切磋</button><button type="button" data-difficulty="hard" aria-pressed="false">挑战</button></div><p class="field-hint" id="difficulty-description">有来有回，刚刚好的挑战。</p></fieldset>
+              <fieldset id="side-field"><legend>选择你的棋子</legend><div class="side-options"><button type="button" data-side="1" aria-pressed="true" class="selected"><i class="mini-stone black"></i>执黑先手<svg class="icon"><use href="#icon-check"/></svg></button><button type="button" data-side="2" aria-pressed="false"><i class="mini-stone white"></i>执白后手<svg class="icon"><use href="#icon-check"/></svg></button></div></fieldset>
+              <button class="button button-primary new-game-button" type="submit">开始新对局<svg class="icon"><use href="#icon-arrow"/></svg></button>
+              <p class="settings-footnote" id="settings-note">随时开局，尽兴就好</p>
+            </form>
+          </section>
+
+          <section class="rule-note"><div class="five-stones" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><h2>五子相连，就这么简单。</h2><p>横、竖、斜，率先连成五子即获胜。<br>没有禁手，每一步都自由。</p><button class="text-button rules-trigger">了解完整规则 <span aria-hidden="true">↗</span></button></section>
+
+          <section class="history-panel"><div class="section-heading"><h2>落子记录</h2><label class="number-toggle"><input type="checkbox" id="show-numbers"><span>显示手数</span></label></div><div id="move-history" class="move-history"><p class="history-empty">故事，从第一手开始。</p></div></section>
+        </aside>
+      </div>
+      <footer class="page-footer"><span>一方棋盘，一段片刻。</span><span>15 × 15 <span>·</span> 自由五子棋</span></footer>
+    </main>
+
+    <main id="snake-view" class="main-content snake-view" hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">THE ARCADE · 002</p><div class="title-row"><h1>贪吃蛇</h1><span class="tag">休闲街机</span></div><p class="page-description">吃掉小点心，把快乐变长一点。</p></div>
+        <button id="snake-rules-button" class="button button-quiet"><svg class="icon"><use href="#icon-help"/></svg>玩法说明</button>
+      </div>
+      <div class="game-layout snake-layout">
+        <section class="snake-panel" aria-label="贪吃蛇游戏">
+          <div class="snake-scoreboard">
+            <div><span>本局得分</span><strong id="snake-score">0</strong></div>
+            <div><span>历史最高</span><strong id="snake-best">0</strong></div>
+            <div><span>蛇身长度</span><strong><span id="snake-length">3</span><small>格</small></strong></div>
+          </div>
+          <div id="snake-play-area" class="snake-arena" tabindex="0" role="group" aria-label="贪吃蛇控制区" aria-describedby="snake-keyboard-help">
+            <div id="snake-field" class="snake-field" role="img" aria-label="贪吃蛇场地"></div>
+            <div id="snake-overlay" class="snake-overlay">
+              <span class="snake-overlay-eyebrow">A LITTLE JOY, ONE BITE AT A TIME</span>
+              <h2 id="snake-overlay-title">准备好，开吃。</h2>
+              <p id="snake-overlay-description">吃掉小点心，把快乐变长一点。</p>
+              <button id="snake-start" class="button button-primary">开始游戏</button>
+            </div>
+          </div>
+          <div class="snake-toolbar"><p id="snake-status" role="status" aria-live="polite">准备就绪，点击开始游戏</p><button id="snake-pause" class="button button-quiet" disabled>暂停游戏</button></div>
+          <div class="snake-touch-controls" role="group" aria-label="方向控制">
+            <button type="button" data-snake-direction="up" aria-label="向上转弯">↑</button>
+            <button type="button" data-snake-direction="left" aria-label="向左转弯">←</button>
+            <button type="button" data-snake-direction="down" aria-label="向下转弯">↓</button>
+            <button type="button" data-snake-direction="right" aria-label="向右转弯">→</button>
+          </div>
+          <div class="board-hint"><span>绕个弯，快乐继续。</span><span id="snake-record-note">最高分保存在当前浏览器</span></div>
+        </section>
+        <aside class="game-aside snake-aside" aria-label="贪吃蛇设置与玩法">
+          <section class="settings-panel">
+            <div class="section-heading"><h2>找到你的节奏</h2><span class="small-label">TAKE A BITE</span></div>
+            <fieldset><legend>前进速度</legend><div class="difficulty-options snake-speed-options"><button type="button" data-snake-speed="easy" aria-pressed="false">慢慢来</button><button type="button" data-snake-speed="normal" aria-pressed="true" class="selected">刚刚好</button><button type="button" data-snake-speed="fast" aria-pressed="false">手速派</button></div><p class="field-hint">开局前选择，进行中保持当前速度。</p></fieldset>
+            <div class="snake-current-speed"><span>当前节奏</span><strong id="snake-speed-label">刚刚好</strong></div>
+            <button id="snake-restart" type="button" class="button button-secondary new-game-button" disabled>重新开始<svg class="icon"><use href="#icon-arrow"/></svg></button>
+            <!-- record-link -->
+          </section>
+          <section class="rule-note snake-controls-note">
+            <h2>指尖转弯，快乐加分。</h2>
+            <div class="snake-keycaps" aria-hidden="true"><kbd>↑</kbd><span><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></span></div>
+            <p id="snake-keyboard-help">方向键 / WASD 控制方向<br>空格暂停或继续，Esc 暂停<br>手机使用棋盘下方的方向按钮</p>
+          </section>
+          <section class="snake-tip"><span class="snake-food-sample" aria-hidden="true"></span><div><h2>一口 +10 分</h2><p>避开边界和自己，留一点转弯的余地。</p></div></section>
+        </aside>
+      </div>
+      <footer class="page-footer"><span>慢慢来，也能吃得很开心。</span><span>20 × 20 <span>·</span> 经典贪吃蛇</span></footer>
+    </main>
+
+    <main id="tetris-view" class="main-content tetris-view" hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">THE ARCADE · 003</p><div class="title-row"><h1>俄罗斯方块</h1><span class="tag">益智街机</span></div><p class="page-description">转个方向，总有合适的位置。</p></div>
+        <button id="tetris-rules-button" class="button button-quiet"><svg class="icon"><use href="#icon-help"/></svg>玩法说明</button>
+      </div>
+      <div class="game-layout tetris-layout">
+        <section class="tetris-panel" aria-label="俄罗斯方块游戏">
+          <div class="tetris-scoreboard">
+            <div><span>本局得分</span><strong id="tetris-score">0</strong></div>
+            <div><span>消除行数</span><strong id="tetris-lines">0</strong></div>
+            <div><span>当前等级</span><strong id="tetris-level">1</strong></div>
+          </div>
+          <div class="tetris-playfield-layout">
+            <div id="tetris-play-area" class="tetris-arena" tabindex="0" role="group" aria-label="俄罗斯方块控制区" aria-describedby="tetris-keyboard-help">
+              <div id="tetris-field" class="tetris-field" role="img" aria-label="俄罗斯方块场地"></div>
+              <div id="tetris-overlay" class="tetris-overlay">
+                <span class="tetris-overlay-eyebrow">PIECE BY PIECE</span>
+                <h2 id="tetris-overlay-title">拼好每一刻。</h2>
+                <p id="tetris-overlay-description">转个方向，总有合适的位置。</p>
+                <button id="tetris-start" class="button button-primary">开始游戏</button>
+              </div>
+            </div>
+            <aside class="tetris-next-panel" aria-label="接下来的方块"><h2>接下来</h2><div id="tetris-next" class="tetris-next"></div><p>描边是<br>方块落点</p><span class="tetris-ghost-key" aria-hidden="true"></span></aside>
+          </div>
+          <div class="tetris-toolbar"><p id="tetris-status" role="status" aria-live="polite">准备就绪，开始拼好这一局</p><button id="tetris-pause" class="button button-quiet" disabled>暂停游戏</button></div>
+          <div class="tetris-touch-controls" role="group" aria-label="方块操作">
+            <button type="button" data-tetris-action="left" aria-label="方块左移"><span aria-hidden="true">←</span><small>左移</small></button>
+            <button type="button" data-tetris-action="rotate" aria-label="顺时针旋转方块"><span aria-hidden="true">↻</span><small>旋转</small></button>
+            <button type="button" data-tetris-action="right" aria-label="方块右移"><span aria-hidden="true">→</span><small>右移</small></button>
+            <button type="button" data-tetris-action="down" aria-label="方块下移"><span aria-hidden="true">↓</span><small>下移</small></button>
+            <button type="button" data-tetris-action="drop" aria-label="方块直接落下"><span aria-hidden="true">⇓</span><small>直落</small></button>
+          </div>
+          <div class="board-hint"><span>消除一点，轻松一点。</span><span>每消除 10 行升一级</span></div>
+        </section>
+        <aside class="game-aside tetris-aside" aria-label="俄罗斯方块纪录与玩法">
+          <section class="settings-panel tetris-record-panel">
+            <div class="section-heading"><h2>你的最佳一局</h2><span class="small-label">PERSONAL BEST</span></div>
+            <div class="tetris-record"><strong id="tetris-best">0</strong><span>分</span></div>
+            <p id="tetris-record-note" class="field-hint">最高分保存在当前浏览器</p>
+            <button id="tetris-restart" type="button" class="button button-secondary new-game-button" disabled>重新开始<svg class="icon"><use href="#icon-arrow"/></svg></button>
+            <!-- record-link -->
+          </section>
+          <section class="rule-note tetris-controls-note"><h2>找到刚刚好的位置。</h2><div id="tetris-keyboard-help" class="tetris-keyboard-help"><p><kbd>←</kbd><kbd>→</kbd><span>左右移动 · A / D 也可以</span></p><p><kbd>↑</kbd><kbd>Z</kbd><span>顺 / 逆时针旋转</span></p><p><kbd>↓</kbd><span>加速下落 · S 也可以</span></p><p><kbd class="wide-key">空格</kbd><span>直接落下并固定</span></p><p><kbd>P</kbd><kbd>Esc</kbd><span>暂停 / 继续</span></p></div><p class="tetris-mobile-note">手机使用场地下方的操作按钮。</p></section>
+          <section class="tetris-score-note"><h2>一次多消，快乐加倍。</h2><p>消除 1 / 2 / 3 / 4 行，基础分分别为<br><strong>100 / 300 / 500 / 800</strong>，再乘当前等级。</p></section>
+        </aside>
+      </div>
+      <footer class="page-footer"><span>让每一块，都有归处。</span><span>10 × 20 <span>·</span> 经典消行</span></footer>
+    </main>
+
+    </template>
+    <main id="library-view" class="main-content library-view">
+      <p class="eyebrow">A LITTLE TIME TO PLAY</p><h1>今天，玩点什么？</h1><p class="page-description">放下忙碌，把这一小段时间留给快乐。</p>
+      <a class="records-library-entry" href="/records"><span aria-hidden="true">✦</span><div><strong>挑战片刻纪录榜</strong><small>进入本站前 10，为你的纪录留下名字。</small></div><span aria-hidden="true">↗</span></a>
+      <div class="library-search"><label for="library-search">找一款游戏</label><div class="library-search-field"><input id="library-search" type="search" placeholder="搜索名称或玩法，如：消除、对战" autocomplete="off"><button id="library-search-clear" type="button" hidden>清空</button></div></div>
+      <div class="library-toolbar"><div class="library-filters" role="group" aria-label="游戏分类"><button type="button" class="selected" data-game-filter="all" aria-pressed="true">全部游戏</button><button type="button" data-game-filter="new" aria-pressed="false">新游戏</button><button type="button" data-game-filter="puzzle" aria-pressed="false">动动脑</button><button type="button" data-game-filter="arcade" aria-pressed="false">练手速</button><button type="button" data-game-filter="strategy" aria-pressed="false">来对弈</button></div><span id="library-count" role="status">132 款小游戏，打开就能玩</span></div>
+      <div class="library-type-filter"><label for="library-type">具体类型</label><select id="library-type"><option value="">所有类型</option><!-- game-types --></select><button id="library-reset" type="button">重置筛选</button></div>
+      <div class="library-grid">
+        <!-- game-cards -->
+      </div>
+      <p id="library-empty" class="library-empty" hidden>暂时没有找到。试试其他关键词，或切换到全部游戏。</p>
+      <p class="library-note">动动脑，或动动手。选一种你喜欢的快乐。</p>
+    </main>
+    <!-- /site-views -->
+  </div>
+
+  <template id="game-dialogs">
+  <dialog id="rules-dialog" class="dialog rules-dialog" aria-labelledby="rules-title"><button class="icon-button dialog-close" data-close-dialog aria-label="关闭玩法说明"><svg class="icon"><use href="#icon-close"/></svg></button><p class="eyebrow">HOW TO PLAY</p><h2 id="rules-title">简单规则，无限可能。</h2><ol class="rules-list"><li><strong>黑棋先行，交替落子</strong><p>在 15×15 棋盘的空白交点放下一颗棋子，你与电脑轮流。</p></li><li><strong>连成五子，即可获胜</strong><p>横向、纵向、两条斜线都可以。五颗或更多连续的同色棋子即获胜，棋盘下满仍无胜者则为和棋。</p></li><li><strong>自由规则，没有禁手</strong><p>本游戏采用休闲自由规则，不设置三三、四四或长连禁手。</p></li><li><strong>给自己一次反悔的机会</strong><p>悔棋会回到你上一次落子前。对局会保存在当前浏览器，刷新后可继续。</p></li></ol><div class="keyboard-tip">键盘也能玩：方向键选择交点，Enter / 空格落子。</div><button class="button button-primary" data-close-dialog>知道了，开始落子</button></dialog>
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="confirm-title"><p class="eyebrow">A FRESH START</p><h2 id="confirm-title">再来一局？</h2><p class="dialog-description">当前棋局将被清空，使用新的设置重新开始。</p><div class="dialog-actions"><button class="button button-secondary" data-close-dialog>继续这一局</button><button class="button button-primary" id="confirm-new-game">开始新对局</button></div></dialog>
+  <dialog id="snake-rules-dialog" class="dialog rules-dialog" aria-labelledby="snake-rules-title"><button class="icon-button dialog-close" data-close-dialog aria-label="关闭贪吃蛇玩法说明"><svg class="icon"><use href="#icon-close"/></svg></button><p class="eyebrow">HOW TO PLAY</p><h2 id="snake-rules-title">快乐，一口一口来。</h2><ol class="rules-list"><li><strong>控制方向，寻找点心</strong><p>使用方向键、WASD 或场地下方的方向按钮。蛇会持续前进，不能直接掉头。</p></li><li><strong>每吃一口，加 10 分</strong><p>吃到红色点心，蛇身增长一格。填满整个 20×20 场地即可通关。</p></li><li><strong>别撞墙，也别撞到自己</strong><p>碰到场地边界或自己的身体，这一局就结束了。历史最高分会保存在当前浏览器。</p></li><li><strong>随时暂停，回来继续</strong><p>空格或暂停按钮可暂停、继续。离开页面、切换标签或查看规则时会自动暂停；刷新页面会开始新的一局。</p></li></ol><button class="button button-primary" data-close-dialog>知道了</button></dialog>
+  <dialog id="snake-confirm-dialog" class="dialog" aria-labelledby="snake-confirm-title"><p class="eyebrow">A FRESH START</p><h2 id="snake-confirm-title">换个节奏，再来一局？</h2><p class="dialog-description">重新开始会清空本局进度，历史最高分会保留。取消后可手动继续。</p><div class="dialog-actions"><button class="button button-secondary" data-close-dialog>保留这一局</button><button class="button button-primary" id="snake-confirm-restart">重新开始</button></div></dialog>
+  <dialog id="tetris-rules-dialog" class="dialog rules-dialog" aria-labelledby="tetris-rules-title"><button class="icon-button dialog-close" data-close-dialog aria-label="关闭俄罗斯方块玩法说明"><svg class="icon"><use href="#icon-close"/></svg></button><p class="eyebrow">HOW TO PLAY</p><h2 id="tetris-rules-title">一行一行，拼出快乐。</h2><ol class="rules-list"><li><strong>移动、旋转，安排落点</strong><p>使用 ← → 或 A / D 移动，↑ / W / X 顺时针旋转，Z 逆时针旋转。描边方块提示落点，右侧预览接下来三个方块。</p></li><li><strong>填满一行，就能消除</strong><p>七种形状按组打乱出现。填满横向 10 格即可消行，上面的方块会落下来；方块堆到顶部无法出场时结束。</p></li><li><strong>多消多得，逐步加速</strong><p>一次消除 1 / 2 / 3 / 4 行分别获得 100 / 300 / 500 / 800 基础分，再乘当前等级。每消除 10 行升一级，落速逐渐加快。</p></li><li><strong>落下、暂停，都由你决定</strong><p>↓ / S 下移每格加 1 分，空格直接落下并固定，每格加 2 分。P / Esc 或暂停按钮可暂停、继续，手机使用操作按钮。</p></li><li><strong>离开时，为你留住这一局</strong><p>切换游戏、标签、窗口或查看规则会自动暂停，返回后手动继续。最高分保存在当前浏览器；刷新会开始新的一局。</p></li></ol><button class="button button-primary" data-close-dialog>知道了，开始拼方块</button></dialog>
+  <dialog id="tetris-confirm-dialog" class="dialog" aria-labelledby="tetris-confirm-title"><p class="eyebrow">A FRESH START</p><h2 id="tetris-confirm-title">再拼一局？</h2><p class="dialog-description">重新开始会清空本局进度，历史最高分会保留。取消后可手动继续。</p><div class="dialog-actions"><button class="button button-secondary" data-close-dialog>保留这一局</button><button class="button button-primary" id="tetris-confirm-restart">重新开始</button></div></dialog>
+  </template>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><div class="noscript">请在浏览器中启用 JavaScript，即可开始游戏。</div></noscript>
+</body>
+</html>
