@@ -3,10 +3,19 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { serveSiteRequest } from '../scripts/site-response.mjs';
 import { legacyPath, SITE_ORIGIN } from '../src/site-pages.js';
+import { SITE_GAMES } from '../src/site-games.js';
 
 const template = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const opts = { template, records: { publicBoard: () => ({ entries: [], players: 0 }) }, gaMeasurementId: 'G-TEST' };
 const fetchPage = (path, method = 'GET', origin = SITE_ORIGIN) => serveSiteRequest(new Request(origin + path, { method }), opts);
+
+test('lobby navigation and the initial filter count match the rendered catalog', async () => {
+  const html = await (await fetchPage('/')).text();
+  const total = SITE_GAMES.length;
+  assert.equal([...html.matchAll(/class="game-card"/g)].length, total);
+  assert.ok(html.includes(`<span class="nav-count">${total}</span>`));
+  assert.ok(html.includes(`id="library-count" role="status">${total} 款小游戏`));
+});
 
 test('every sitemap location is unique and serves its own canonical HTML', async () => {
   const response = await fetchPage('/sitemap.xml');

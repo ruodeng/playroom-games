@@ -103,5 +103,6 @@ export function renderPage(template, page, { head = '', recordsHtml = '' } = {})
       ? '<a class="nav-link active" id="nav-records" aria-current="page"'
       : '<a class="nav-link" id="nav-records"')
     .replace(viewsSlot, () => `${visible}\n    ${expansionPlaceholder}\n    <template id="inactive-views">\n      ${inactive.join('\n      ')}\n    </template>`)
-    .replace('<!-- game-types -->', () => renderGameTypes());
+    .replace('<!-- game-types -->', () => renderGameTypes())
+    .replaceAll('<!-- game-total -->', String(SITE_GAMES.length));
 }

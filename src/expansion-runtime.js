@@ -203,7 +203,8 @@ export function createExpansionController() {
     button.disabled = true;
     status.textContent = '正在准备游戏…';
     try {
-      const [module] = await Promise.all([import(`./expansion/${game.group}.js`), loadStyle(game.group)]);
+      const moduleUrl = new URL(`./expansion/${game.group}.js`, import.meta.url);
+      const [module] = await Promise.all([import(moduleUrl.href), loadStyle(game.group)]);
       if (version !== generation) return;
       dispose = startRound(game, root, module.mount);
       button.textContent = '重新开始';

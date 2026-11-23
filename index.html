@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f6f7f2">
-  <meta name="description" content="片刻 Playroom，32 款免费在线小游戏。五子棋、大富翁、贪吃蛇、俄罗斯方块、连连看、纸牌接龙等，打开就能玩。">
+  <meta name="description" content="片刻 Playroom 免费在线小游戏。五子棋、大富翁、贪吃蛇、俄罗斯方块、连连看、纸牌接龙等，打开就能玩。">
   <title>游戏大厅 · 片刻 Playroom</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
@@ -39,7 +39,7 @@
     <div class="sidebar-body">
       <p class="nav-label">把快乐，留一点给自己</p>
       <nav>
-        <a class="nav-link active" id="nav-library" href="/" aria-label="游戏大厅" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg><span>游戏大厅</span><span class="nav-count">32</span></a>
+        <a class="nav-link active" id="nav-library" href="/" aria-label="游戏大厅" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg><span>游戏大厅</span><span class="nav-count"><!-- game-total --></span></a>
         <a class="nav-link" id="nav-records" href="/records" title="片刻纪录榜" aria-label="片刻纪录榜"><span class="arcade-nav-icon" aria-hidden="true">♜</span><span>片刻纪录榜</span><span class="active-dot"></span></a>
         <p class="nav-label game-label">开始一局</p>
         <!-- game-navigation -->
@@ -207,7 +207,7 @@
       <p class="eyebrow">A LITTLE TIME TO PLAY</p><h1>今天，玩点什么？</h1><p class="page-description">放下忙碌，把这一小段时间留给快乐。</p>
       <a class="records-library-entry" href="/records"><span aria-hidden="true">✦</span><div><strong>挑战片刻纪录榜</strong><small>进入本站前 10，为你的纪录留下名字。</small></div><span aria-hidden="true">↗</span></a>
       <div class="library-search"><label for="library-search">找一款游戏</label><div class="library-search-field"><input id="library-search" type="search" placeholder="搜索名称或玩法，如：消除、对战" autocomplete="off"><button id="library-search-clear" type="button" hidden>清空</button></div></div>
-      <div class="library-toolbar"><div class="library-filters" role="group" aria-label="游戏分类"><button type="button" class="selected" data-game-filter="all" aria-pressed="true">全部游戏</button><button type="button" data-game-filter="new" aria-pressed="false">新游戏</button><button type="button" data-game-filter="puzzle" aria-pressed="false">动动脑</button><button type="button" data-game-filter="arcade" aria-pressed="false">练手速</button><button type="button" data-game-filter="strategy" aria-pressed="false">来对弈</button></div><span id="library-count" role="status">132 款小游戏，打开就能玩</span></div>
+      <div class="library-toolbar"><div class="library-filters" role="group" aria-label="游戏分类"><button type="button" class="selected" data-game-filter="all" aria-pressed="true">全部游戏</button><button type="button" data-game-filter="new" aria-pressed="false">新游戏</button><button type="button" data-game-filter="puzzle" aria-pressed="false">动动脑</button><button type="button" data-game-filter="arcade" aria-pressed="false">练手速</button><button type="button" data-game-filter="strategy" aria-pressed="false">来对弈</button></div><span id="library-count" role="status"><!-- game-total --> 款小游戏，打开就能玩</span></div>
       <div class="library-type-filter"><label for="library-type">具体类型</label><select id="library-type"><option value="">所有类型</option><!-- game-types --></select><button id="library-reset" type="button">重置筛选</button></div>
       <div class="library-grid">
         <!-- game-cards -->
